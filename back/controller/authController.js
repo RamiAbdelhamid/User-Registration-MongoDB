@@ -59,3 +59,11 @@ exports.profile = async (req, res) => {
     res.status(500).send("Server error");
   }
 };
+
+// Logout logic
+exports.logout = (req, res) => {
+  res
+    .clearCookie("token") // Clears the token cookie
+    .status(200)
+    .send("Logged out successfully");
+};

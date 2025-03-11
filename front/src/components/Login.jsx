@@ -1,15 +1,18 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import { axiosInstance } from "../axios";
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate(); // Initialize useNavigate hook
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await axiosInstance.post("/login", { username, password });
       alert("Logged in successfully!");
+      navigate("/profile"); // Navigate to the profile page after successful login
     } catch (err) {
       alert("Error: " + err.response.data);
     }
